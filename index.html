@@ -1,34 +1,44 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-
     <title>Libemf2svg by kakwa</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+    <script src="javascripts/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="stylesheets/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
   </head>
-
   <body>
-    <header>
-      <div class="inner">
-        <h1>Libemf2svg</h1>
-        <h2>EMF to SVG conversion library</h2>
-        <a href="https://github.com/kakwa/libemf2svg" class="button"><small>View project on</small> GitHub</a>
-      </div>
-    </header>
+      <div id="header">
+        <nav>
+          <li class="fork"><a href="https://github.com/kakwa/libemf2svg">View On GitHub</a></li>
+          <li class="downloads"><a href="https://github.com/kakwa/libemf2svg/zipball/master">ZIP</a></li>
+          <li class="downloads"><a href="https://github.com/kakwa/libemf2svg/tarball/master">TAR</a></li>
+          <li class="title">DOWNLOADS</li>
+        </nav>
+      </div><!-- end header -->
 
-    <div id="content-wrapper">
-      <div class="inner clearfix">
-        <section id="main-content">
-          <h1>
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>Libemf2svg</h1>
+          <p>EMF to SVG conversion library</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/kakwa">kakwa</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
+        </div>
+
+        <h1>
 <a id="libemf2svg" class="anchor" href="#libemf2svg" aria-hidden="true"><span class="octicon octicon-link"></span></a>libemf2svg</h1>
 
 <p><a href="https://travis-ci.org/kakwa/libemf2svg"><img src="https://travis-ci.org/kakwa/libemf2svg.svg?branch=master" alt="Build Status"></a></p>
@@ -93,73 +103,47 @@ $ ./emf2svg -i ./tests/resources/emf/test-037.emf -o example.svg -v</pre></div>
 <h2>
 <a id="library" class="anchor" href="#library" aria-hidden="true"><span class="octicon octicon-link"></span></a>Library</h2>
 
-<p>usage example:</p>
+<p>Shorten usage example (<a href="https://github.com/kakwa/libemf2svg/blob/master/goodies/example.c">complete example here</a>):</p>
 
-<div class="highlight highlight-C"><pre>#<span class="pl-k">include</span> <span class="pl-s1"><span class="pl-pds">&lt;</span>sys/stat.h<span class="pl-pds">&gt;</span></span>
-#<span class="pl-k">include</span> <span class="pl-s1"><span class="pl-pds">&lt;</span>stdio.h<span class="pl-pds">&gt;</span></span>
-#<span class="pl-k">include</span> <span class="pl-s1"><span class="pl-pds">&lt;</span>stdlib.h<span class="pl-pds">&gt;</span></span>
-#<span class="pl-k">include</span> <span class="pl-s1"><span class="pl-pds">&lt;</span>fcntl.h<span class="pl-pds">&gt;</span></span>
-#<span class="pl-k">include</span> <span class="pl-s1"><span class="pl-pds">&lt;</span>unistd.h<span class="pl-pds">&gt;</span></span>
-#<span class="pl-k">include</span> <span class="pl-s1"><span class="pl-pds">&lt;</span>sys/mman.h<span class="pl-pds">&gt;</span></span>
-
-#<span class="pl-k">include</span> <span class="pl-s1"><span class="pl-pds">&lt;</span>EMFSVG.h<span class="pl-pds">&gt;</span></span>
-
-<span class="pl-c">/* to compile: gcc -Wall -std=c99 -lm -lEMFSVG ./example.c -o test */</span>
+<div class="highlight highlight-C"><pre>#<span class="pl-k">include</span> <span class="pl-s1"><span class="pl-pds">&lt;</span>EMFSVG.h<span class="pl-pds">&gt;</span></span>
+<span class="pl-c">//[...]</span>
 <span class="pl-st">int</span> <span class="pl-en">main</span>(<span class="pl-st">int</span> argc, <span class="pl-st">char</span> *argv[]){
 
-    <span class="pl-k">if</span> (argc != <span class="pl-c1">2</span>){<span class="pl-s3">fprintf</span>(stderr, <span class="pl-s1"><span class="pl-pds">"</span>file missing<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>); <span class="pl-s3">exit</span>(<span class="pl-c1">1</span>);}
-
-    <span class="pl-c">/* emf content */</span>
-    <span class="pl-st">char</span> *emf_content;
     <span class="pl-c">/* emf content size */</span>
-    <span class="pl-s3">size_t</span>  emf_size;
+    <span class="pl-s3">size_t</span> emf_size;
+    <span class="pl-c">/* emf content */</span>
+    <span class="pl-st">char</span> * emf_content;
+    <span class="pl-c">/* svg output string */</span>
+    <span class="pl-st">char</span> *svg_out = <span class="pl-c1">NULL</span>;
+
+    <span class="pl-c">//[...]</span>
+
+    <span class="pl-c">/*************************** options settings **************************/</span>
 
     <span class="pl-c">/* allocate the options structure) */</span>
-    generatorOptions *options = (generatorOptions *)<span class="pl-s3">calloc</span>(<span class="pl-c1">1</span>, 
-        <span class="pl-k">sizeof</span>(generatorOptions));
+    generatorOptions *options = (generatorOptions *)<span class="pl-s3">calloc</span>(<span class="pl-c1">1</span>, \
+            <span class="pl-k">sizeof</span>(generatorOptions));
     <span class="pl-c">/* debugging flag (prints the emf record in stdout if true) */</span>
     options-&gt;verbose = <span class="pl-c1">true</span>;
     <span class="pl-c">/* emf+ flag (handles emf+ records if true) */</span>
     options-&gt;emfplus = <span class="pl-c1">true</span>;
     <span class="pl-c">/* if a custom xml/svg namespace is needed (keep empty in doubt) */</span>
     options-&gt;nameSpace = (<span class="pl-st">char</span> *)<span class="pl-s1"><span class="pl-pds">"</span>svg<span class="pl-pds">"</span></span>;
-    <span class="pl-c">/* includes the svg start and stop balise</span>
-<span class="pl-c">       (set to false if the result of this call is meant to be used in another svg) */</span>
+    <span class="pl-c">/* includes the svg start and stop tags (set to false if the result</span>
+<span class="pl-c">     * of this call is meant to be used inside another svg) */</span>
     options-&gt;svgDelimiter = <span class="pl-c1">true</span>;
     <span class="pl-c">/* image width in px (set to 0 to use the original emf device width) */</span>
     options-&gt;imgWidth = <span class="pl-c1">0</span>;
     <span class="pl-c">/* image height in px (set to 0 to use the original emf device height) */</span>
     options-&gt;imgHeight = <span class="pl-c1">0</span>;
 
-    <span class="pl-c">/* svg output string */</span>
-    <span class="pl-st">char</span> *svg_out = <span class="pl-c1">NULL</span>;
+    <span class="pl-c">/***************************** conversion ******************************/</span>
 
-    <span class="pl-c">// quick and dirty way to load the file in memory</span>
-    <span class="pl-st">struct</span> stat s; <span class="pl-s">const</span> <span class="pl-st">char</span> * file_name = argv[<span class="pl-c1">1</span>];
-    <span class="pl-st">int</span> fd = <span class="pl-s3">open</span>(file_name, O_RDONLY);
-    <span class="pl-k">if</span> (fd &lt; <span class="pl-c1">0</span>){<span class="pl-s3">fprintf</span>(stderr, <span class="pl-s1"><span class="pl-pds">"</span>file access failed<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>); <span class="pl-s3">exit</span>(<span class="pl-c1">1</span>);}
-    <span class="pl-s3">fstat</span> (fd, &amp;s); emf_size = s.<span class="pl-vo">st_size</span>;
-    emf_content = <span class="pl-s3">mmap</span>(<span class="pl-c1">0</span>, emf_size, PROT_READ, MAP_PRIVATE, fd, <span class="pl-c1">0</span>);
-
-    <span class="pl-s3">fprintf</span>(stdout,<span class="pl-s1"><span class="pl-pds">"</span>##### BEGIN CONVERSION ####<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>);
-    <span class="pl-c">/* conversion function */</span>
     <span class="pl-st">int</span> ret = <span class="pl-s3">emf2svg</span>(emf_content, emf_size, &amp;svg_out, options);
-    <span class="pl-c">/* end conversion */</span>
-    <span class="pl-s3">fprintf</span>(stdout,<span class="pl-s1"><span class="pl-pds">"</span>#####  END CONVERSION  ####<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>);
 
-    <span class="pl-c">// do something with the generated SVG</span>
-    <span class="pl-s3">fprintf</span>(stdout,<span class="pl-s1"><span class="pl-pds">"</span>#####  BEGIN SVG DUMP  ####<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>);
-    <span class="pl-s3">fprintf</span>(stdout,<span class="pl-s1"><span class="pl-pds">"</span><span class="pl-c1">%s</span><span class="pl-pds">"</span></span>, svg_out);
-    <span class="pl-s3">fprintf</span>(stdout,<span class="pl-s1"><span class="pl-pds">"</span>#####   END SVG DUMP   ####<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>);
+    <span class="pl-c">/***********************************************************************/</span>
 
-    <span class="pl-c">// free the allocated structures</span>
-    <span class="pl-s3">free</span>(svg_out);
-    <span class="pl-s3">free</span>(options);
-    <span class="pl-c">//close file and free content</span>
-    <span class="pl-s3">close</span>(fd);
-    <span class="pl-s3">munmap</span>(emf_content, emf_size);
-    <span class="pl-c">//return</span>
-    <span class="pl-s3">exit</span>(!ret);
+    <span class="pl-c">//[...]</span>
 }</pre></div>
 
 <p>See <a href="https://github.com/kakwa/libemf2svg/blob/master/src/conv/emf2svg.cpp">./src/conv/emf2svg.cpp</a> for a real life example.</p>
@@ -214,25 +198,10 @@ tests/out/test-000.emf.svg  tests/out/test-051.emf.svg
     make <span class="pl-k">&amp;&amp;</span>\
     <span class="pl-s1"><span class="pl-pds">"</span>./tests/resources/check_correctness.sh<span class="pl-pds">"</span></span> -sxN \
     -e <span class="pl-s1"><span class="pl-pds">"</span>./tests/resources/emf-corrupted/<span class="pl-pds">"</span></span></pre></div>
-        </section>
+      </section>
 
-        <aside id="sidebar">
-          <a href="https://github.com/kakwa/libemf2svg/zipball/master" class="button">
-            <small>Download</small>
-            .zip file
-          </a>
-          <a href="https://github.com/kakwa/libemf2svg/tarball/master" class="button">
-            <small>Download</small>
-            .tar.gz file
-          </a>
-
-          <p class="repo-owner"><a href="https://github.com/kakwa/libemf2svg"></a> is maintained by <a href="https://github.com/kakwa">kakwa</a>.</p>
-
-          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
-        </aside>
-      </div>
     </div>
-
-  
+    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
+    
   </body>
 </html>
