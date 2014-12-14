@@ -4,40 +4,29 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Libemf2svg by kakwa</title>
+
     <link rel="stylesheet" href="stylesheets/styles.css">
     <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-    <script src="javascripts/respond.js"></script>
-    <!--[if lt IE 9]>
-      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-    <!--[if lt IE 8]>
-    <link rel="stylesheet" href="stylesheets/ie.css">
-    <![endif]-->
+    <script src="javascripts/scale.fix.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
   <body>
-      <div id="header">
-        <nav>
-          <li class="fork"><a href="https://github.com/kakwa/libemf2svg">View On GitHub</a></li>
-          <li class="downloads"><a href="https://github.com/kakwa/libemf2svg/zipball/master">ZIP</a></li>
-          <li class="downloads"><a href="https://github.com/kakwa/libemf2svg/tarball/master">TAR</a></li>
-          <li class="title">DOWNLOADS</li>
-        </nav>
-      </div><!-- end header -->
-
     <div class="wrapper">
-
+      <header>
+        <h1>Libemf2svg</h1>
+        <p>EMF to SVG conversion library</p>
+        <p class="view"><a href="https://github.com/kakwa/libemf2svg">View the Project on GitHub <small>kakwa/libemf2svg</small></a></p>
+        <ul>
+          <li><a href="https://github.com/kakwa/libemf2svg/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/kakwa/libemf2svg/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/kakwa/libemf2svg">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
       <section>
-        <div id="title">
-          <h1>Libemf2svg</h1>
-          <p>EMF to SVG conversion library</p>
-          <hr>
-          <span class="credits left">Project maintained by <a href="https://github.com/kakwa">kakwa</a></span>
-          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/michigangraham">mattgraham</a></span>
-        </div>
-
         <h1>
 <a id="libemf2svg" class="anchor" href="#libemf2svg" aria-hidden="true"><span class="octicon octicon-link"></span></a>libemf2svg</h1>
 
@@ -64,7 +53,7 @@
 <span class="pl-c"># options: </span>
 <span class="pl-c"># * [-DUSE_CLANG=on]: use clang instead of gcc</span>
 <span class="pl-c"># * [-DSTATIC=on]: build static library</span>
-<span class="pl-c"># * [-DDEBUG=on]: compile with debugging symboles</span>
+<span class="pl-c"># * [-DDEBUG=on]: compile with debugging symbols</span>
 <span class="pl-c">#</span>
 <span class="pl-c"># CMAKE_INSTALL_PREFIX is optional, default is /usr/local/</span>
 $ cmake <span class="pl-s3">.</span> -DCMAKE_INSTALL_PREFIX=/usr/
@@ -103,7 +92,7 @@ $ ./emf2svg -i ./tests/resources/emf/test-037.emf -o example.svg -v</pre></div>
 <h2>
 <a id="library" class="anchor" href="#library" aria-hidden="true"><span class="octicon octicon-link"></span></a>Library</h2>
 
-<p>Shorten usage example (<a href="https://github.com/kakwa/libemf2svg/blob/master/goodies/example.c">complete example here</a>):</p>
+<p>Shorten example (<a href="https://github.com/kakwa/libemf2svg/blob/master/goodies/example.c">complete example here</a>):</p>
 
 <div class="highlight highlight-C"><pre>#<span class="pl-k">include</span> <span class="pl-s1"><span class="pl-pds">&lt;</span>EMFSVG.h<span class="pl-pds">&gt;</span></span>
 <span class="pl-c">//[...]</span>
@@ -149,6 +138,39 @@ $ ./emf2svg -i ./tests/resources/emf/test-037.emf -o example.svg -v</pre></div>
 <p>See <a href="https://github.com/kakwa/libemf2svg/blob/master/src/conv/emf2svg.cpp">./src/conv/emf2svg.cpp</a> for a real life example.</p>
 
 <h2>
+<a id="development" class="anchor" href="#development" aria-hidden="true"><span class="octicon octicon-link"></span></a>Development</h2>
+
+<p>General source code organisation:</p>
+
+<ul>
+<li>
+<a href="https://github.com/kakwa/libemf2svg/blob/master/src/lib/EMFSVG.c">./src/lib/EMFSVG.c</a>: EMF record handler and API entry point.</li>
+<li>
+<a href="https://github.com/kakwa/libemf2svg/blob/master/src/lib/EMFSVG_print.c">./src/lib/EMFSVG_print.c</a>: EMF record printer (debugging).</li>
+<li>
+<a href="https://github.com/kakwa/libemf2svg/blob/master/src/lib/PMFSVG.c">./src/lib/PMFSVG.c</a>: EMF+ record handler.</li>
+<li>
+<a href="https://github.com/kakwa/libemf2svg/blob/master/src/lib/PMFSVG_print.c">./src/lib/PMFSVG_print.c</a>: EMF+ record printer (debugging).</li>
+<li>
+<a href="https://github.com/kakwa/libemf2svg/blob/master/src/conv/emf2svg.cpp">./src/conv/emf2svg.cpp</a>: Command line tool.</li>
+<li>
+<a href="https://github.com/kakwa/libemf2svg/blob/master/deps">./deps</a>: external dependencies.</li>
+</ul>
+
+<p>Useful links:</p>
+
+<ul>
+<li>
+<a href="http://msdn.microsoft.com/en-us/library/cc230514.aspx">MS-EMF</a>: EMF specifications.</li>
+<li>
+<a href="http://msdn.microsoft.com/en-us/library/cc230724.aspx">MS-EMF+</a>: EMF+ specifications.</li>
+<li>
+<a href="http://msdn.microsoft.com/en-us/library/cc250370.aspx">MS-WMF</a>: WMF specifications.</li>
+<li>
+<a href="http://www.w3.org/TR/SVG/Overview.html">SVG</a>: SVG specifications.</li>
+</ul>
+
+<h2>
 <a id="testing" class="anchor" href="#testing" aria-hidden="true"><span class="octicon octicon-link"></span></a>Testing</h2>
 
 <ul>
@@ -169,10 +191,11 @@ tests/out/bad_corrupted_2014-12-01-063258.emf
 </pre></div>
 
 <ul>
-<li>Check correctness and memleaks (xmllint and valgrind needed):</li>
+<li>Check correctness and memory leaks (xmllint and valgrind needed):</li>
 </ul>
 
-<div class="highlight highlight-bash"><pre><span class="pl-c"># options: -n to disable valgrind tests, -v for verbose output</span>
+<div class="highlight highlight-bash"><pre><span class="pl-c"># options: -n to disable valgrind tests, -v for verbose output </span>
+<span class="pl-c"># see -h for complete list of options</span>
 $ ./tests/resources/check_correctness.sh <span class="pl-c">#[-n] [-v]</span>
 
 <span class="pl-c"># generated svg:</span>
@@ -194,13 +217,16 @@ tests/out/test-000.emf.svg  tests/out/test-051.emf.svg
 
 <p>To check against corrupted emf:</p>
 
-<div class="highlight highlight-bash"><pre>$ cmake -DDEBUG=ON <span class="pl-s3">.</span> -DUSE_CLANG=ON <span class="pl-k">&amp;&amp;</span>\
+<div class="highlight highlight-bash"><pre>$ cmake -DDEBUG=ON <span class="pl-s3">.</span> <span class="pl-k">&amp;&amp;</span>\
     make <span class="pl-k">&amp;&amp;</span>\
     <span class="pl-s1"><span class="pl-pds">"</span>./tests/resources/check_correctness.sh<span class="pl-pds">"</span></span> -sxN \
     -e <span class="pl-s1"><span class="pl-pds">"</span>./tests/resources/emf-corrupted/<span class="pl-pds">"</span></span></pre></div>
       </section>
-
     </div>
+    <footer>
+      <p>Project maintained by <a href="https://github.com/kakwa">kakwa</a></p>
+      <p>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></p>
+    </footer>
     <!--[if !IE]><script>fixScale(document);</script><![endif]-->
     
   </body>
